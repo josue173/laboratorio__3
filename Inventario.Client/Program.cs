@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using Inventario.Client;
 using Inventario.Client.Services;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);

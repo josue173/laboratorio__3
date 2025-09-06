@@ -1,55 +1,79 @@
 @page "/"
-@using Inventario.Client.Services
 @inject ApiService ApiService
 
-<h1>Lista de Productos</h1>
+<h1 class="text-center my-4">Gestión de Inventario</h1>
 
-@if (productos == null)
-{
-    <p><em>Cargando...</em></p>
-}
-else if (productos.Count == 0)
-{
-    <p>No hay productos disponibles.</p>
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nombre</th>
-                <th>Cantidad</th>
-                <th>Precio</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var producto in productos)
-            {
-                <tr>
-                    <td>@producto.Id</td>
-                    <td>@producto.Nombre</td>
-                    <td>@producto.Cantidad</td>
-                    <td>@producto.Precio.ToString("C")</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
+<div class="container">
+    <div class="card shadow mb-4">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Agregar Producto</h5>
+        </div>
+        <div class="card-body">
+            <EditForm Model="@nuevoProducto" OnValidSubmit="AgregarProducto">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <InputText class="form-control" @bind-Value="nuevoProducto.Nombre" placeholder="Nombre" />
+                    </div>
+                    <div class="col-md-4">
+                        <InputNumber class="form-control" @bind-Value="nuevoProducto.Cantidad" placeholder="Cantidad" />
+                    </div>
+                    <div class="col-md-4">
+                        <InputNumber class="form-control" @bind-Value="nuevoProducto.Precio" placeholder="Precio" />
+                    </div>
+                </div>
+                <button class="btn btn-success mt-3" type="submit">Agregar</button>
+            </EditForm>
+        </div>
+    </div>
+
+    <div class="card shadow">
+        <div class="card-header bg-secondary text-white">
+            <h5 class="mb-0">Inventario Actual</h5>
+        </div>
+        <div class="card-body p-0">
+            <table class="table table-striped mb-0">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Cantidad</th>
+                        <th>Precio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var producto in productos)
+                    {
+                        <tr>
+                            <td>@producto.Nombre</td>
+                            <td>@producto.Cantidad</td>
+                            <td>@producto.Precio.ToString("C")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
 @code {
-    private List<Producto> productos;
+    private List<Producto> productos = new();
+    private Producto nuevoProducto = new();
 
     protected override async Task OnInitializedAsync()
     {
-        try
-        {
-            productos = await ApiService.GetProductosAsync();
-        }
-        catch (Exception ex)
-        {
-            // Manejo de errores básico
-            Console.WriteLine($"Error al cargar productos: {ex.Message}");
-        }
+        productos = await ApiService.ObtenerProductosAsync();
+    }
+
+    private async Task AgregarProducto()
+    {
+        await ApiService.AgregarProductoAsync(nuevoProducto);
+        productos = await ApiService.ObtenerProductosAsync();
+        nuevoProducto = new();
+    }
+
+    public class Producto
+    {
+        public string Nombre { get; set; }
+        public int Cantidad { get; set; }
+        public decimal Precio { get; set; }
     }
 }

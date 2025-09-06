@@ -1,0 +1,37 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Archivos\\2025\\UMG\\Segundo Semestre\\Desarrollo Web\\Laboratorio 3\\inventario-app\\Inventario.Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\blazor.webassembly.js",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js"
+    },
+    {
+      "Id": "C:\\Archivos\\2025\\UMG\\Segundo Semestre\\Desarrollo Web\\Laboratorio 3\\inventario-app\\Inventario.Client\\obj\\Debug\\net7.0\\build-gz\\QRxJIers.gz",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js.gz"
+    },
+    {
+      "Id": "C:\\Archivos\\2025\\UMG\\Segundo Semestre\\Desarrollo Web\\Laboratorio 3\\inventario-app\\Inventario.Client\\wwwroot\\css\\app.css",
+      "PackagePath": "staticwebassets\\css\\app.css"
+    },
+    {
+      "Id": "C:\\Archivos\\2025\\UMG\\Segundo Semestre\\Desarrollo Web\\Laboratorio 3\\inventario-app\\Inventario.Client\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.Inventario.Client.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.Inventario.Client.props",
+      "PackagePath": "build\\Inventario.Client.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.Inventario.Client.props",
+      "PackagePath": "buildMultiTargeting\\Inventario.Client.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.Inventario.Client.props",
+      "PackagePath": "buildTransitive\\Inventario.Client.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
