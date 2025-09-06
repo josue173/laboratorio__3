@@ -1,0 +1,55 @@
+@page "/"
+@using Inventario.Client.Services
+@inject ApiService ApiService
+
+<h1>Lista de Productos</h1>
+
+@if (productos == null)
+{
+    <p><em>Cargando...</em></p>
+}
+else if (productos.Count == 0)
+{
+    <p>No hay productos disponibles.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var producto in productos)
+            {
+                <tr>
+                    <td>@producto.Id</td>
+                    <td>@producto.Nombre</td>
+                    <td>@producto.Cantidad</td>
+                    <td>@producto.Precio.ToString("C")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Producto> productos;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            productos = await ApiService.GetProductosAsync();
+        }
+        catch (Exception ex)
+        {
+            // Manejo de errores básico
+            Console.WriteLine($"Error al cargar productos: {ex.Message}");
+        }
+    }
+}
